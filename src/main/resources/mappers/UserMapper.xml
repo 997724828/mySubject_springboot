@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="club.yuyang.boot.dao.UserDao">
+    <resultMap id="BaseResultMap" type="club.yuyang.boot.entity.User">
+        <id column="id" property="id" />
+        <result column="account" property="account" />
+        <result column="password" property="password" />
+        <result column="name" property="name" />
+        <result column="classmate_id" property="classmateId" />
+        <result column="institute_id" property="instituteId" />
+        <result column="school_id" property="schoolId" />
+        <result column="type" property="type" />
+    </resultMap>
+
+
+    <select id="findByIdAndPaw" resultMap="BaseResultMap">
+        select * from user where account=#{account} and password=#{password}
+    </select>
+
+    <update id="updatePaw" parameterType="club.yuyang.boot.entity.User">
+        update user set password=#{password} where id = #{id}
+    </update>
+
+</mapper>

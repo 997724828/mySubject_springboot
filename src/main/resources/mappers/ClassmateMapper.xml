@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="club.yuyang.boot.dao.ClassmateDao">
+    <resultMap id="BaseResultMap" type="club.yuyang.boot.entity.Classmate">
+        <id column="id" property="id" />
+        <result column="school_id" property="schoolId" />
+        <result column="institute_id" property="instituteId" />
+        <result column="classmate_id" property="classmateId" />
+        <result column="classmate_name" property="classmateName" />
+    </resultMap>
+
+    <select id="findNameBySchoolAndInstituteAndClassmate" parameterType="java.lang.Integer" resultType="java.lang.String">
+        select classmate_name from classmate where school_id=#{schoolId} and institute_id=#{instituteId} and classmate_id=#{classmateId}
+    </select>
+</mapper>

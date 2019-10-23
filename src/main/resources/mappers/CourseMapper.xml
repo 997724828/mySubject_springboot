@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="club.yuyang.boot.dao.CourseDao">
+    <resultMap id="BaseResultMap" type="club.yuyang.boot.entity.Course">
+        <id column="id" property="id" />
+        <result column="school_id" property="schoolId" />
+        <result column="institute_id" property="instituteId" />
+        <result column="classmate_id" property="classmateId" />
+        <result column="course_name" property="courseName" />
+        <result column="teacher_name" property="teacherName" />
+        <result column="times" property="times" />
+        <result column="sections" property="sections" />
+        <result column="address" property="address" />
+        <result column="types" property="types" />
+    </resultMap>
+
+    <insert id="addCourse" parameterType="club.yuyang.boot.entity.Course">
+        insert into course (school_id,institute_id,classmate_id,course_name,teacher_name,times,sections,address,types)
+        values (#{schoolId},#{instituteId},#{classmateId},#{courseName},#{teacherName},#{times},#{sections},#{address},#{types})
+    </insert>
+
+    <select id="getCourse" parameterType="club.yuyang.boot.entity.Course" resultMap="BaseResultMap">
+        select * from  course where school_id = #{schoolId}
+                                  and institute_id = #{instituteId}
+                                  and classmate_id = #{classmateId}
+                                  and times = #{times}
+                                  and sections=#{sections}
+    </select>
+
+    <update id="updateCourse" parameterType="club.yuyang.boot.entity.Course">
+        update course set course_name=#{courseName},teacher_name=#{teacherName},address=#{address},types=#{types} where id = #{id}
+    </update>
+
+    <select id="allCourses" parameterType="club.yuyang.boot.dto.IdentityDTO" resultMap="BaseResultMap">
+        select *from course where school_id = #{schoolId}
+                                  and institute_id = #{instituteId}
+                                  and classmate_id = #{classmateId}
+        <if test="types != null and types != ''">
+            and types = #{types}
+        </if>
+        order by times , sections asc
+    </select>
+
+    <delete id="delCourseById" parameterType="int">
+        delete from course where id = #{id}
+    </delete>
+</mapper>

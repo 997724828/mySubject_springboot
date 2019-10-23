@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>注册页</title>
+    <script src="./js/jquery-3.4.1.js"></script>
+    <script src="./js/bootstrap.js"></script>
+    <link rel="stylesheet" href="./css/bootstrap.css">
+    <link rel="stylesheet" href="./css/bootstrap-theme.css">
+    <link rel="stylesheet" href="./css/joinPage.css">
+</head>
+<body>
+<div class="join_container">
+
+    <div class="join_head"></div>
+
+    <div class="join_content">
+        <div class="content_left">
+            <h4>Create your person account</h4>
+            <form action="">
+                <span>用户名：</span><br>
+                <input type="text" class="putIn" placeholder="输入学号..."><br>
+                <span>姓名：</span><br>
+                <input type="text" class="putIn" placeholder="输入真实姓名..."><br>
+                <span>学校：</span><br>
+                <select name="seletctSchool">
+                    <option th:each="list : ${schoolList}" th:text="${list.schoolName}" th:value="${list.id}"></option>
+                </select>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
